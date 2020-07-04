@@ -1,1 +1,304 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*
+ * Globals
+ */
+
+ @font-face {
+  font-family: Mirza;
+  src: url(assets/Mirza-Regular.ttf) format("truetype");
+  font-weight: 400;
+}
+
+::selection {
+  background: #43aac4;
+  /* WebKit/Blink Browsers */
+}
+
+::-moz-selection {
+  background: #43aac4;
+  /* Gecko Browsers */
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Links */
+
+a,
+a:focus,
+a:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Custom default button */
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none;
+  /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: 0.05rem solid #fff;
+}
+
+.btn-primary {
+  color: #000;
+  background-color: #5f5f5f;
+  border-color: #4a4a4a;
+}
+
+.btn-primary:active:focus {
+  color: #90b6d8;
+}
+
+/*
+* Base structure
+*/
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%;
+  /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.pattern-bg {
+  background-image: url("assets/flowers.png");
+}
+
+.image-bg {
+  background: rgba(5, 9, 26, 0.57) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: inherit;
+}
+
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+
+.inner {
+  padding: 1rem;
+}
+
+/*
+* Header
+*/
+
+.masthead {
+  margin-bottom: 2rem;
+}
+
+.masthead-brand {
+  margin-bottom: 0;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: default;
+}
+
+.nav-masthead .nav-link {
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: transparent;
+  border-bottom: 0.1rem solid transparent;
+  text-shadow: 0.05rem 0.1rem 0rem rgba(0, 0, 0, 0.4);
+  -webkit-transition: border-color 0.35s ease;
+  -moz-transition: border-color 0.35s ease;
+  -ms-transition: border-color 0.35s ease;
+  -o-transition: border-color 0.35s ease;
+  transition: border-color 0.35s ease;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+  .nav-masthead {
+    float: right;
+  }
+}
+
+/*
+* Cover
+*/
+
+.cover {
+  padding: 1.5rem;
+}
+
+.cover .btn-lg {
+  padding: 0.75rem 1.25rem;
+  font-weight: bold;
+}
+
+/*
+* Footer
+*/
+
+.mastfoot {
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+}
+
+.mastfoot .left-container {
+  position: absolute;
+  bottom: 0;
+}
+
+/*
+* Affix and center
+*/
+
+@media (min-width: 40em) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%;
+    /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 62em) {
+  .cover-container {
+    width: 60rem;
+  }
+  .mastfoot,
+  .masthead {
+    width: 100%;
+  }
+}
+
+.app-name {
+  margin-top: 3px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+a.settings {
+  color: rgba(255, 255, 255, 0.4);
+  margin-right: 12px;
+  font-size: 1.1rem;
+  text-shadow: 0.05rem 0.1rem 0rem rgba(0, 0, 0, 0.07);
+}
+a.settings.active,
+a.settings:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.text-container {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 20px 40px 20px 50px;
+  border-radius: 4px;
+  text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 1);
+  cursor: default;
+  color: #ddd;
+  width: 55%;
+  position: relative;
+  margin: 0 auto;
+}
+
+.text-container .fa-circle-o-notch.fa-spin {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.text-container small {
+  color: #43aac4;
+  font-size: 0.6rem;
+  font-weight: bold;
+}
+
+.dark-bg {
+  background: rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0.05rem 0.1rem #000;
+  cursor: default;
+  color: rgba(255, 255, 255, 0.76);
+  padding: 4px 10px;
+}
+
+.link {
+  color: #43aac4;
+}
+
+.close {
+  color: #fff !important;
+  font-weight: 400 !important;
+  text-shadow: none !important;
+  font-size: 1rem !important;
+  opacity: 0.3 !important;
+}
+
+.whats-new {
+  position: fixed;
+  top: 58px;
+  right: 10px;
+  padding: 20px;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.9);
+}
+.whats-new ul {
+  margin: 0;
+  clear: both;
+  font-size: 0.75rem;
+  padding-left: 17px;
+}

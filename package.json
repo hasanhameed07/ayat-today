@@ -1,6 +1,8 @@
 {
   "name": "ayat-today",
-  "version": "0.0.0",
+  "version": "0.0.2",
+  "author": "Hasan Hameed <hasan.hameed07@gmail.com>",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,9 +18,16 @@
     "@angular/compiler": "~9.0.6",
     "@angular/core": "~9.0.6",
     "@angular/forms": "~9.0.6",
+    "@angular/http": "^7.2.16",
     "@angular/platform-browser": "~9.0.6",
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
+    "@types/chrome": "0.0.117",
+    "bootstrap": "^4.5.0",
+    "core-js": "^3.6.5",
+    "font-awesome": "^4.7.0",
+    "fontawesome": "^5.6.3",
+    "ngx-chrome-storage": "^1.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

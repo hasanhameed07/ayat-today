@@ -1,0 +1,12 @@
+
+.col-form-label {
+  text-align: left;
+}
+hr {
+    height: 1px;
+    background-color: #000;
+    margin-top: 0;
+    margin-bottom: 10px;
+    width: 94%;
+}
+

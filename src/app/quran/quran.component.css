@@ -1,0 +1,52 @@
+.text-container {
+    width: 100%;
+    text-align: center;
+    padding-top: 40px;
+    font-family: 'Mirza';
+}
+.text-container .arabic {
+    line-height: 1.5;
+    /* font-family: 'Mada', sans-serif; */
+    direction: rtl;
+    font-size: 2rem;
+    color: #fff;
+}
+.text-container .translation {
+    line-height: 1.25;
+    direction: ltr;
+    font-size: 1.3rem;
+    margin-top: 16px;
+    color: #75abb9;
+    font-style: italic;
+}
+.text-container .second-translation {
+    line-height: 1.3;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    color: #c4b89f;
+}
+
+footer {
+    font-size: .95rem;
+    color: rgba(227, 227, 227, 0.6);
+    margin: 16px auto 10px;
+}
+.refresh a {
+  margin-left: 8px;
+}
+.refresh {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0);
+    right: 22px;
+    bottom: 14px;
+    position: absolute;
+    -webkit-transition: color .35s ease;
+    -moz-transition: color .35s ease;
+    -ms-transition: color .35s ease;
+    -o-transition: color .35s ease;
+    transition: color .35s ease;
+    text-shadow: none
+}
+.text-container:hover .refresh {
+    color: rgba(255, 255, 255, 0.7);
+}

@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ayat-today'`, () => {
+  it(`should have as title 'chrome-storage-library'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ayat-today');
+    expect(app.title).toEqual('chrome-storage-library');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ayat-today app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('chrome-storage-library app is running!');
   });
 });

@@ -1,0 +1,22 @@
+<div class="text-container">
+    <i *ngIf="ayah.surah===''" class="fa fa-circle-o-notch fa-spin fa-2x fa-fw"></i>
+    <div *ngIf="ayah.surah!==''">
+      <div class="arabic" lang="ar" [ngStyle]="{'font-size': (ayah.text.length<75? 2.7 : 2.3)+'rem'}" >
+        {{ayah.text}}
+      </div>
+      <div *ngIf="showEnglishTranslation" class="translation" lang="en">
+        {{ayah.translationText}}
+      </div>
+      <div *ngIf="translation!=='none'" class="second-translation">
+        {{ayah.secondTranslationText}}
+      </div>
+      <footer>⟞ {{ayah.surah + ' : ' + ayah.number}} ⟝</footer>
+      <div class="refresh">
+        <a *ngIf="!isPlaying" (click)="playAyah()" title="Play" aria-hidden="true"><i class="fa fa-play"></i></a>
+        <a *ngIf="isPlaying" (click)="pauseAyah()" title="Pause" aria-hidden="true"><i class="fa fa-pause"></i></a>
+        <a (click)="capture()" title="Save Image"><i class="fa fa-download"></i></a>
+        <a (click)="loadAyah()" title="Change" aria-hidden="true"><i class="fa fa-refresh"></i></a>
+      </div>
+    </div>
+</div>
+
