@@ -6,9 +6,11 @@
           <app-gsearch></app-gsearch>
         </div>
         <nav class="nav nav-masthead">
-          <a [routerLink]="['/app/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Ayat</a>
+          <a [routerLink]="['/app/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+            class="nav-link">Ayat</a>
           <a [routerLink]="['/app/timings']" routerLinkActive="active" class="nav-link">Prayer Timings</a>
           <a [routerLink]="['/app/qazaPrayers']" routerLinkActive="active" class="nav-link">Qaza Prayers</a>
+          <a [routerLink]="['/app/ayatHistory']" routerLinkActive="active" class="nav-link">Ayah History</a>
         </nav>
       </div>
     </div>
@@ -25,8 +27,10 @@
           <app-hijri-date></app-hijri-date>
         </div>
         <div class="pull-left left-container">
-          <a *ngIf="routerUrl === '/app/settings'" [routerLink]="['/app']" title="Settings" class="settings pull-left dark-bg active"><i class="fa fa-cog"></i></a>
-          <a *ngIf="routerUrl !== '/app/settings'" [routerLink]="['/app/settings']" title="Settings" class="settings pull-left dark-bg"><i class="fa fa-cog"></i></a>
+          <a *ngIf="routerUrl === '/app/settings'" [routerLink]="['/app']" title="Settings"
+            class="settings pull-left dark-bg active"><i class="fa fa-cog"></i></a>
+          <a *ngIf="routerUrl !== '/app/settings'" [routerLink]="['/app/settings']" title="Settings"
+            class="settings pull-left dark-bg"><i class="fa fa-cog"></i></a>
         </div>
       </div>
     </div>
@@ -43,7 +47,9 @@
       <a class="close" aria-hidden="true" (click)='whatsNewRead()'><i class="fa fa-times"></i></a>
       <ul>
         <li>Spread this extension for sadaqah jaryah.</li>
-        <li>Don't forget to <a class="link" href="https://chrome.google.com/webstore/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/reviews">rate it</a> five star!</li>
+        <li>Don't forget to <a class="link"
+            href="https://chrome.google.com/webstore/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/reviews">rate
+            it</a> five star!</li>
       </ul>
     </div>
   </div>

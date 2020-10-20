@@ -5,6 +5,7 @@ import { QuranComponent } from './quran/quran.component';
 import { PrayerTimingsComponent } from './prayer-timings/prayer-timings.component';
 import { SettingsComponent } from './settings/settings.component';
 import { RootComponent } from './root/root.component';
+import { AyatHistoryComponent } from './ayat-history/ayat-history.component';
 
 const routes: Routes = [
   {
@@ -16,27 +17,33 @@ const routes: Routes = [
     path: 'app',
     component: RootComponent,
     children: [
-    {
-      path: '',
-      component: QuranComponent
-    },
-    {
-      path: 'qazaPrayers',
-      component: QazaPrayersComponent
-    },
-    {
-      path: 'timings',
-      component: PrayerTimingsComponent
-    },
-    {
-      path: 'settings',
-      component: SettingsComponent
-    }
+      {
+        path: '',
+        component: QuranComponent
+      },
+      {
+        path: 'qazaPrayers',
+        component: QazaPrayersComponent
+      },
+      {
+        path: 'timings',
+        component: PrayerTimingsComponent
+      },
+      {
+        path: 'ayatHistory',
+        component: AyatHistoryComponent
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent
+      }
+
+
     ]
   }
 ];
 @NgModule({
-  imports: [ RouterModule.forRoot(routes, {useHash: true}) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

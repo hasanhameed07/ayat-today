@@ -1,0 +1,16 @@
+.text-container {
+  width: 70%;
+  // margin-top: 36px;
+  .custom-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .custom-row:hover {
+    background-color: #ffffff0f;
+    color: #fff;
+  }
+}
+.text-center {
+  justify-content: center;
+}

@@ -1,0 +1,17 @@
+<div class="text-container">
+  <div class="row text-center form-group">
+    <small>Ayah History</small>
+  </div>
+
+  <div *ngFor="let ayah of history; let i=index">
+    <div class="row custom-row" (click)="getAyah(ayah.ayahNum)">
+      <label class="col-2 text-left col-form-label">{{i+1}}</label>
+      <div class="col-6 text-right">
+        <span class="" text-right>{{ayah.text}}</span>
+      </div>
+      <div class="col-4 text-right">
+        <span class="" text-right>{{ayah.surah + " : " + ayah.number }}</span>
+      </div>
+    </div>
+  </div>
+</div>
