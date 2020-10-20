@@ -18,7 +18,6 @@ export class AyatHistoryComponent implements OnInit {
   }
 
   getAyah(ayahNum) {
-    console.log(ayahNum);
     this.router.navigate(['/app/'], { queryParams: { ayahNum } });
   }
 
