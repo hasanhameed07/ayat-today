@@ -10,7 +10,7 @@ import { NgxChromeStorageService } from 'ngx-chrome-storage';
 export class AyatHistoryComponent implements OnInit {
 
   constructor(private settings: NgxChromeStorageService, private router: Router) { }
-  history: [];
+  history = [];
   ngOnInit(): void {
     this.settings.getChrome('ayatHistory', []).then(data => {
       this.history = data;
