@@ -27,12 +27,7 @@ export class QuranComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.showEnglishTranslation = this.settings.config?.showEnglish;
     this.translation = this.settings.config?.translation;
-    this.settings.getChrome('prefetchAyah', null).then((data) => {
-      if (data) {
-        this.prefetchAyah = data;
-      }
-      this.loadAyah();
-    });
+    this.loadAyah();
   }
 
   loadAyah() {
@@ -46,20 +41,7 @@ export class QuranComponent implements OnInit, OnDestroy {
     };
 
     const ayahNumQuery = this.route.snapshot.queryParams.ayahNum;
-    let ayahNum = ayahNumQuery ? Number(ayahNumQuery) : this.quran.randomAyahNum();
-    if (this.prefetchAyah && !ayahNumQuery) {
-      this.ayah = this.prefetchAyah.ayah;
-      ayahNum = this.prefetchAyah.ayahNum;
-      this.prefetchAyah = null;
-      this.settings.setAll(null, 'prefetchAyah');
-      this.settings.getChrome('ayatHistory', []).then((data) => {
-        const historyObj = { text: this.ayah.text, number: this.ayah.number, surah: this.ayah.surah, ayahNum };
-        if (data.length > 9) {
-          data.pop();
-        }
-        this.settings.setAll([historyObj, ...data], 'ayatHistory');
-      });
-    } else {
+    const ayahNum = ayahNumQuery ? Number(ayahNumQuery) : this.quran.randomAyahNum();
       this.quran.getAyah(ayahNum, this.showEnglishTranslation, this.translation)
         .subscribe(
           ayah => {
@@ -77,7 +59,6 @@ export class QuranComponent implements OnInit, OnDestroy {
           err => {
             console.log(err);
           });
-    }
     this.audio = this.quran.getAudio(ayahNum);
     // Gets audio file duration
     this.audio.addEventListener('canplaythrough', () => this.zone.run(() => {
@@ -89,16 +70,6 @@ export class QuranComponent implements OnInit, OnDestroy {
       }
     }), true);
 
-    // prefatching ayah
-    const ayahNumber = this.quran.randomAyahNum();
-    this.quran.getAyah(ayahNumber, this.showEnglishTranslation, this.translation)
-      .subscribe(
-        ayah => {
-          this.prefetchAyah = { ayahNum: ayahNumber, ayah };
-          this.settings.setAll(this.prefetchAyah, 'prefetchAyah');
-        }, err => {
-          console.log(err);
-        });
   }
 
   capture() {
