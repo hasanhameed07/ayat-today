@@ -16,7 +16,6 @@ export class QuranComponent implements OnInit, OnDestroy {
   audio: HTMLAudioElement;
   isPlaying = false;
   duration = 0;
-  prefetchAyah = null;
 
   constructor(private quran: QuranService, private settings: NgxChromeStorageService, private zone: NgZone, private route: ActivatedRoute) { }
 
