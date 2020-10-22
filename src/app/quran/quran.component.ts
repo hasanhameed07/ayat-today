@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { QuranService } from './quran.service';
 import { NgxChromeStorageService } from 'ngx-chrome-storage';
-import { promise } from 'protractor';
 import { ActivatedRoute } from '@angular/router';
 declare var domtoimage: any;
 
