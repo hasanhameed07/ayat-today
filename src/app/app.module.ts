@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { AyatHistoryComponent } from './ayat-history/ayat-history.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CommonModule } from '@angular/common';
     QazaPrayersComponent,
     CounterInputComponent,
     PrayerTimingsComponent,
-    SettingsComponent
+    SettingsComponent,
+    AyatHistoryComponent
   ],
   imports: [
     CommonModule,

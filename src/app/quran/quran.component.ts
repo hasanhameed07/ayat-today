@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
 import { QuranService } from './quran.service';
 import { NgxChromeStorageService } from 'ngx-chrome-storage';
+import { ActivatedRoute } from '@angular/router';
 declare var domtoimage: any;
 
 @Component({
@@ -16,7 +17,7 @@ export class QuranComponent implements OnInit, OnDestroy {
   isPlaying = false;
   duration = 0;
 
-  constructor(private quran: QuranService, private settings: NgxChromeStorageService, private zone: NgZone) {}
+  constructor(private quran: QuranService, private settings: NgxChromeStorageService, private zone: NgZone, private route: ActivatedRoute) { }
 
   ngOnDestroy() {
     this.pauseAyah();
@@ -37,25 +38,37 @@ export class QuranComponent implements OnInit, OnDestroy {
       translationText: '',
       secondTranslationText: ''
     };
-    const ayahNum = this.quran.randomAyahNum();
-    this.quran.getAyah(ayahNum, this.showEnglishTranslation, this.translation)
-          .subscribe(
-              ayah => {
-                this.ayah = ayah;
-              },
-              err => {
-                  console.log(err);
-              });
+
+    const ayahNumQuery = this.route.snapshot.queryParams.ayahNum;
+    const ayahNum = ayahNumQuery ? Number(ayahNumQuery) : this.quran.randomAyahNum();
+      this.quran.getAyah(ayahNum, this.showEnglishTranslation, this.translation)
+        .subscribe(
+          ayah => {
+            this.ayah = ayah;
+            this.settings.getChrome('ayatHistory', []).then((data) => {
+              if (!ayahNumQuery) {
+                const historyObj = { text: ayah.text, number: ayah.number, surah: ayah.surah, ayahNum };
+                if (data.length > 9) {
+                  data.pop();
+                }
+                this.settings.setAll([historyObj, ...data], 'ayatHistory');
+              }
+            });
+          },
+          err => {
+            console.log(err);
+          });
     this.audio = this.quran.getAudio(ayahNum);
     // Gets audio file duration
     this.audio.addEventListener('canplaythrough', () => this.zone.run(() => {
       this.duration = this.audio.duration;
     }), false);
     this.audio.addEventListener('timeupdate', () => this.zone.run(() => {
-       if (this.audio.currentTime === this.duration) {
-         this.isPlaying = false;
-       }
+      if (this.audio.currentTime === this.duration) {
+        this.isPlaying = false;
+      }
     }), true);
+
   }
 
   capture() {
@@ -80,13 +93,13 @@ export class QuranComponent implements OnInit, OnDestroy {
     srcEl.style.opacity = '1';
 
     domtoimage.toPng(srcEl, { quality: 1, bgcolor: 'rgba(5, 9, 26)' })
-    .then((dataUrl) => {
+      .then((dataUrl) => {
         const link = document.createElement('a');
         link.download = 'ayat-today.png';
         link.href = dataUrl;
         link.click();
         srcEl.parentNode.removeChild(srcEl);
-    });
+      });
   }
 
 
