@@ -250,6 +250,7 @@ export class QuranService {
         const arabicQuran = data.data[0];
         const returnObj = {
           text: arabicQuran.text,
+          textArr: arabicQuran.text.split(' '),
           number: arabicQuran.numberInSurah,
           surah: arabicQuran.surah.englishName,
           translationText: englishTranslation ? data.data[1].text : '',
@@ -259,6 +260,35 @@ export class QuranService {
         return returnObj;
       })
     );
+  }
+
+  getAyahTranslations(verse: number, ayahTextAr, showEnglish: boolean, secondTranslation: string) {
+    if (navigator.onLine === false) {
+      return of([]);
+    }
+    const ayahWords = ayahTextAr.split(' ').filter(word => word.length > 1);
+    secondTranslation = (secondTranslation && secondTranslation !== 'none') ? secondTranslation : '';
+    const englishTranslation = (showEnglish) ? 'en.daryabadi,' : '';
+    return this.http.get<{
+      data: { text: string }
+    }>(this.ayahUrl + verse + '/editions/quran-wordbyword,' + englishTranslation + secondTranslation)
+    .pipe(
+      map(response => {
+        const { text } = response.data[0];
+        const translationsHash = {};
+        const wordsChunk = text.split('$');
+        wordsChunk.map((chunk, index) => {
+          const chunkElements = chunk.split('|');
+          const key = chunkElements[0]?.trim();
+          const val = chunkElements[1]?.trim();
+          const ayahWord = ayahWords[index];
+          if (key && val) {
+            translationsHash[ayahWord] = val;
+          }
+        })
+        return translationsHash;
+      })
+    )
   }
 
   getTranslations(): object[] {

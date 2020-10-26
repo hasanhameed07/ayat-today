@@ -17,7 +17,7 @@ export class QuranComponent implements OnInit, OnDestroy {
   isPlaying = false;
   duration = 0;
   prefetchAyah = null;
-
+  translationsHash = {};
   constructor(
     private quran: QuranService,
     private settings: NgxChromeStorageService,
@@ -57,6 +57,7 @@ export class QuranComponent implements OnInit, OnDestroy {
     if (this.prefetchAyah && !ayahNumQuery) {
       this.ayah = this.prefetchAyah.ayah;
       ayahNum = this.prefetchAyah.ayahNum;
+      this.getWordByWordTranslations(ayahNum, this.ayah.text);
       this.prefetchAyah = null;
       this.settings.setAll(null, 'prefetchAyah');
       this.settings.getChrome('ayatHistory', []).then((data) => {
@@ -77,6 +78,7 @@ export class QuranComponent implements OnInit, OnDestroy {
         .subscribe(
           (ayah) => {
             this.ayah = ayah;
+            this.getWordByWordTranslations(ayahNum, this.ayah.text);
             this.settings.getChrome('ayatHistory', []).then((data) => {
               if (!ayahNumQuery) {
                 const historyObj = {
@@ -119,7 +121,7 @@ export class QuranComponent implements OnInit, OnDestroy {
       true
     );
 
-    // prefatching ayah
+    // prefetching ayah
     const ayahNumber = this.quran.randomAyahNum();
     this.quran
       .getAyah(ayahNumber, this.showEnglishTranslation, this.translation)
@@ -132,6 +134,13 @@ export class QuranComponent implements OnInit, OnDestroy {
           console.log(err);
         }
       );
+  }
+
+  getWordByWordTranslations(ayahNumber, ayahTextAr) {
+    this.quran.getAyahTranslations(ayahNumber, ayahTextAr, this.showEnglishTranslation, this.translation)
+      .subscribe(tHash => {
+        this.translationsHash = tHash;
+      })
   }
 
   capture() {
