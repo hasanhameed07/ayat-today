@@ -96,7 +96,9 @@ a:hover {
   background-size: cover;
   width: 100%;
   height: 100%;
-  display: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .cover-container {
@@ -116,6 +118,10 @@ a:hover {
 
 .masthead {
   margin-bottom: 2rem;
+  .inner {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .masthead-brand {
@@ -123,6 +129,7 @@ a:hover {
   font-weight: normal;
   color: rgba(255, 255, 255, 0.5);
   cursor: default;
+  flex: 1;
 }
 
 .nav-masthead .nav-link {
@@ -190,43 +197,7 @@ a:hover {
   bottom: 0;
 }
 
-/*
-* Affix and center
-*/
 
-@media (min-width: 40em) {
-  /* Pull out the header and footer */
-  .masthead {
-    position: fixed;
-    top: 0;
-  }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-  }
-  /* Start the vertical centering */
-  .site-wrapper-inner {
-    vertical-align: middle;
-  }
-  /* Handle the widths */
-  .masthead,
-  .mastfoot,
-  .cover-container {
-    width: 100%;
-    /* Must be percentage or pixels for horizontal alignment */
-  }
-}
-
-@media (min-width: 62em) {
-  .cover-container {
-    width: 60rem;
-  }
-  .mastfoot,
-  .masthead {
-    width: 100%;
-  }
-}
 
 .app-name {
   margin-top: 3px;
@@ -252,7 +223,6 @@ a.settings:hover {
   text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 1);
   cursor: default;
   color: #ddd;
-  width: 55%;
   position: relative;
   margin: 0 auto;
 }
@@ -301,4 +271,104 @@ a.settings:hover {
   clear: both;
   font-size: 0.75rem;
   padding-left: 17px;
+}
+
+
+/*
+* Affix and center
+*/
+
+@media (min-width: 40em), (max-width: 40em) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%;
+    /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+.vertical-nav {
+  position: relative;
+  cursor: pointer;
+  padding: 8px;
+  &__links {
+    position: absolute;
+    right: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 40px 10px 10px 10px;
+    .nav-masthead  {
+      align-items: flex-end;
+    }
+  }
+  &:hover {
+    .vertical-nav__icon {
+      z-index: 100;
+      position: absolute;
+      right: 8px;
+      top: 12px;
+    }
+    .vertical-nav__links {
+      display: flex;
+      height: max-content;
+      width: 150px;
+    }
+  }
+}
+
+@media (min-width: 40em) {
+  .masthead {
+    .nav-masthead {
+      display: flex;
+    }
+    .vertical-nav {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 40em) {
+  .masthead {
+    z-index: 100;
+    .nav-masthead:not(.flex-column) {
+      display: none;
+    }
+    .vertical-nav {
+      display: block;
+    }
+  }
+  .whats-new {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 0px 24px;
+  }
+  .image-bg {
+    padding-top: 66px;
+  }
+}
+
+@media (min-width: 62em) {
+  .cover-container {
+    width: 60rem;
+  }
+  .mastfoot,
+  .masthead {
+    width: 100%;
+  }
 }
