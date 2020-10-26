@@ -1,36 +1,22 @@
 <div class="text-container">
   <ng-container *ngIf="ayah && ayah.surah; else loader">
-    <div
-      class="arabic"
-      lang="ar"
-      [ngStyle]="{ 'font-size': (ayah.text.length < 75 ? 2.7 : 2.3) + 'rem' }"
-    >
-      {{ ayah.text }}
+    <div class="arabic" lang="ar" [ngStyle]="{'font-size': (ayah.text.length<75? 2.7 : 2.3)+'rem'}" >
+      <ng-container *ngFor="let word of ayah.textArr">
+        <span [tooltip]="translationsHash[word]">{{word}} </span>
+      </ng-container>
     </div>
     <div *ngIf="showEnglishTranslation" class="translation" lang="en">
-      {{ ayah.translationText }}
+      {{ayah.translationText}}
     </div>
-    <div *ngIf="translation !== 'none'" class="second-translation">
-      {{ ayah.secondTranslationText }}
+    <div *ngIf="translation!=='none'" class="second-translation">
+      {{ayah.secondTranslationText}}
     </div>
-    <footer>⟞ {{ ayah.surah + ' : ' + ayah.number }} ⟝</footer>
+    <footer>⟞ {{ayah.surah + ' : ' + ayah.number}} ⟝</footer>
     <div class="refresh">
-      <a *ngIf="!isPlaying" (click)="playAyah()" title="Play" aria-hidden="true"
-        ><i class="fa fa-play"></i
-      ></a>
-      <a
-        *ngIf="isPlaying"
-        (click)="pauseAyah()"
-        title="Pause"
-        aria-hidden="true"
-        ><i class="fa fa-pause"></i
-      ></a>
-      <a (click)="capture()" title="Save Image"
-        ><i class="fa fa-download"></i
-      ></a>
-      <a (click)="loadAyah()" title="Change" aria-hidden="true"
-        ><i class="fa fa-refresh"></i
-      ></a>
+      <a *ngIf="!isPlaying" (click)="playAyah()" title="Play" aria-hidden="true"><i class="fa fa-play"></i></a>
+      <a *ngIf="isPlaying" (click)="pauseAyah()" title="Pause" aria-hidden="true"><i class="fa fa-pause"></i></a>
+      <a (click)="capture()" title="Save Image"><i class="fa fa-download"></i></a>
+      <a (click)="loadAyah()" title="Change" aria-hidden="true"><i class="fa fa-refresh"></i></a>
     </div>
   </ng-container>
 </div>
