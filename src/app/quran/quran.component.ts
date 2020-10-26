@@ -7,7 +7,7 @@ declare var domtoimage: any;
 @Component({
   selector: 'ayat-quran',
   templateUrl: './quran.component.html',
-  styleUrls: ['./quran.component.css']
+  styleUrls: ['./quran.component.css'],
 })
 export class QuranComponent implements OnInit, OnDestroy {
   ayah: any;
@@ -18,7 +18,12 @@ export class QuranComponent implements OnInit, OnDestroy {
   duration = 0;
   prefetchAyah = null;
 
-  constructor(private quran: QuranService, private settings: NgxChromeStorageService, private zone: NgZone, private route: ActivatedRoute) { }
+  constructor(
+    private quran: QuranService,
+    private settings: NgxChromeStorageService,
+    private zone: NgZone,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnDestroy() {
     this.pauseAyah();
@@ -42,32 +47,44 @@ export class QuranComponent implements OnInit, OnDestroy {
       number: 0,
       surah: '',
       translationText: '',
-      secondTranslationText: ''
+      secondTranslationText: '',
     };
 
     const ayahNumQuery = this.route.snapshot.queryParams.ayahNum;
-    let ayahNum = ayahNumQuery ? Number(ayahNumQuery) : this.quran.randomAyahNum();
+    let ayahNum = ayahNumQuery
+      ? Number(ayahNumQuery)
+      : this.quran.randomAyahNum();
     if (this.prefetchAyah && !ayahNumQuery) {
       this.ayah = this.prefetchAyah.ayah;
       ayahNum = this.prefetchAyah.ayahNum;
       this.prefetchAyah = null;
       this.settings.setAll(null, 'prefetchAyah');
       this.settings.getChrome('ayatHistory', []).then((data) => {
-        const historyObj = { text: this.ayah.text, number: this.ayah.number, surah: this.ayah.surah, ayahNum };
+        const historyObj = {
+          text: this.ayah.text,
+          number: this.ayah.number,
+          surah: this.ayah.surah,
+          ayahNum,
+        };
         if (data.length > 9) {
           data.pop();
         }
         this.settings.setAll([historyObj, ...data], 'ayatHistory');
       });
-
     } else {
-      this.quran.getAyah(ayahNum, this.showEnglishTranslation, this.translation)
+      this.quran
+        .getAyah(ayahNum, this.showEnglishTranslation, this.translation)
         .subscribe(
-          ayah => {
+          (ayah) => {
             this.ayah = ayah;
             this.settings.getChrome('ayatHistory', []).then((data) => {
               if (!ayahNumQuery) {
-                const historyObj = { text: ayah.text, number: ayah.number, surah: ayah.surah, ayahNum };
+                const historyObj = {
+                  text: ayah.text,
+                  number: ayah.number,
+                  surah: ayah.surah,
+                  ayahNum,
+                };
                 if (data.length > 9) {
                   data.pop();
                 }
@@ -75,32 +92,46 @@ export class QuranComponent implements OnInit, OnDestroy {
               }
             });
           },
-          err => {
+          (err) => {
             console.log(err);
-          });
+          }
+        );
     }
 
     this.audio = this.quran.getAudio(ayahNum);
     // Gets audio file duration
-    this.audio.addEventListener('canplaythrough', () => this.zone.run(() => {
-      this.duration = this.audio.duration;
-    }), false);
-    this.audio.addEventListener('timeupdate', () => this.zone.run(() => {
-      if (this.audio.currentTime === this.duration) {
-        this.isPlaying = false;
-      }
-    }), true);
+    this.audio.addEventListener(
+      'canplaythrough',
+      () =>
+        this.zone.run(() => {
+          this.duration = this.audio.duration;
+        }),
+      false
+    );
+    this.audio.addEventListener(
+      'timeupdate',
+      () =>
+        this.zone.run(() => {
+          if (this.audio.currentTime === this.duration) {
+            this.isPlaying = false;
+          }
+        }),
+      true
+    );
 
     // prefatching ayah
     const ayahNumber = this.quran.randomAyahNum();
-    this.quran.getAyah(ayahNumber, this.showEnglishTranslation, this.translation)
+    this.quran
+      .getAyah(ayahNumber, this.showEnglishTranslation, this.translation)
       .subscribe(
-        ayah => {
+        (ayah) => {
           this.prefetchAyah = { ayahNum: ayahNumber, ayah };
           this.settings.setAll(this.prefetchAyah, 'prefetchAyah');
-        }, err => {
+        },
+        (err) => {
           console.log(err);
-        });
+        }
+      );
   }
 
   capture() {
@@ -124,7 +155,8 @@ export class QuranComponent implements OnInit, OnDestroy {
     srcEl.style.left = '0';
     srcEl.style.opacity = '1';
 
-    domtoimage.toPng(srcEl, { quality: 1, bgcolor: 'rgba(5, 9, 26)' })
+    domtoimage
+      .toPng(srcEl, { quality: 1, bgcolor: 'rgba(5, 9, 26)' })
       .then((dataUrl) => {
         const link = document.createElement('a');
         link.download = 'ayat-today.png';
@@ -133,7 +165,6 @@ export class QuranComponent implements OnInit, OnDestroy {
         srcEl.parentNode.removeChild(srcEl);
       });
   }
-
 
   playAyah() {
     if (this.audio) {
