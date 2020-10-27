@@ -160,6 +160,14 @@ export class QuranService {
       "format": "audio",
       "type": "translation"
     }, {
+      "identifier": "ar.minshawimujawwad",
+      "language": "ar",
+      "name": "محمد صديق المنشاوي (المجود)",
+      "englishName": "Minshawy (Mujawwad)",
+      "format": "audio",
+      "type": "translation",
+      "direction": null
+    }, {
       "identifier": "ar.muhammadayyoub",
       "language": "ar",
       "name": "Muhammad Ayyoub",
@@ -222,6 +230,14 @@ export class QuranService {
       "englishName": "Youssouf Leclerc",
       "format": "audio",
       "type": "versebyverse"
+    }, {
+      "identifier": "ar.aymanswoaid",
+      "language": "ar",
+      "name": "أيمن سويد",
+      "englishName": "Ayman Sowaid",
+      "format": "audio",
+      "type": "versebyverse",
+      "direction": null
     }]`;
 
 
