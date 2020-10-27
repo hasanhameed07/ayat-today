@@ -5,11 +5,11 @@
 
   <div *ngFor="let ayah of history; let i=index">
     <div class="row custom-row" (click)="getAyah(ayah.ayahNum)">
-      <label class="col-2 text-left col-form-label">{{i+1}}</label>
-      <div class="col-6 text-right">
+      <label class="col-1 text-left col-form-label number">{{i+1}}</label>
+      <div class="col-9 text-right arabic-text">
         <span>{{ayah.text}}</span>
       </div>
-      <div class="col-4 text-right">
+      <div class="col-2 text-left ayat-number">
         <span>{{ayah.surah + " : " + ayah.number }}</span>
       </div>
     </div>
