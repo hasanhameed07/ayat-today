@@ -14,15 +14,17 @@
 .text-container .translation {
     line-height: 1.25;
     direction: ltr;
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-top: 16px;
     color: #75abb9;
     font-style: italic;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
 }
 .text-container .second-translation {
     line-height: 1.3;
     font-size: 1.3rem;
-    margin-top: 10px;
+    margin-top: 16px;
     color: #c4b89f;
 }
 

@@ -10,6 +10,11 @@
   font-weight: 400;
 }
 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
 ::selection {
   background: #43aac4;
   /* WebKit/Blink Browsers */
@@ -372,3 +377,14 @@ a.settings:hover {
     width: 100%;
   }
 }
+
+.tooltip .tooltip-inner {background-color: #43aac4; color: white;font-weight:bold;} 
+.tooltip.top .tooltip-arrow {border-top-color: #43aac4;}
+.tooltip-arrow {border-top-color: #43aac4!important;}
+.tooltip .arrow:before {
+  border-top-color: #43aac4 !important;
+}
+.tooltip .tooltip-inner {
+  background-color: #008ec3;
+}
+

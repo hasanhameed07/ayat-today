@@ -2,7 +2,7 @@
   <ng-container *ngIf="ayah && ayah.surah; else loader">
     <div class="arabic" lang="ar" [ngStyle]="{'font-size': (ayah.text.length<75? 2.7 : 2.3)+'rem'}" >
       <ng-container *ngFor="let word of ayah.textArr">
-        <span [tooltip]="translationsHash[word]">{{word}} </span>
+        <span [tooltip]="translationsHash[word]" class="blue-tooltip">{{word}} </span>
       </ng-container>
     </div>
     <div *ngIf="showEnglishTranslation" class="translation" lang="en">
