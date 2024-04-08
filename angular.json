@@ -73,11 +73,13 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ayat-today:build"
+            "browserTarget": "ayat-today:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ayat-today:build:production"
+              "browserTarget": "ayat-today:build:production",
+              "proxyConfig": "proxy.conf.json"
             }
           }
         },

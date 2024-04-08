@@ -1,8 +1,8 @@
 <div class="text-container">
   <ng-container *ngIf="ayah && ayah.surah; else loader">
-    <div class="arabic" lang="ar" [ngStyle]="{'font-size': (ayah.text.length<75? 2.7 : 2.3)+'rem'}" >
+    <div class="arabic" lang="ar" [ngStyle]="{'font-size': (ayah.text.length<75? 2.9 : 2.5)+'rem'}" >
       <ng-container *ngFor="let word of ayah.textArr">
-        <span [tooltip]="translationsHash[word]" class="blue-tooltip">{{word}} </span>
+        <div [tooltip]="translationsHash[word]" tooltipAnimation="true" containerClass="ar-tooltip" class="d-inline-flex mx-1">{{word}} </div>
       </ng-container>
     </div>
     <div *ngIf="showEnglishTranslation" class="translation" lang="en">
@@ -12,11 +12,15 @@
       {{ayah.secondTranslationText}}
     </div>
     <footer>⟞ {{ayah.surah + ' : ' + ayah.number}} ⟝</footer>
-    <div class="refresh">
-      <a *ngIf="!isPlaying" (click)="playAyah()" title="Play" aria-hidden="true"><i class="fa fa-play"></i></a>
-      <a *ngIf="isPlaying" (click)="pauseAyah()" title="Pause" aria-hidden="true"><i class="fa fa-pause"></i></a>
-      <a (click)="capture()" title="Save Image"><i class="fa fa-download"></i></a>
-      <a (click)="loadAyah()" title="Change" aria-hidden="true"><i class="fa fa-refresh"></i></a>
+    <div class="ayat-tools ayat-tools-left">
+      <a *ngIf="!isPlaying" (click)="playAyah()" title="Listen Audio" aria-hidden="true"><i class="fa fa-play"></i></a>
+      <a *ngIf="isPlaying" (click)="pauseAyah()" title="Pause Audio" aria-hidden="true"><i class="fa fa-pause"></i></a>
+      <a (click)="capture()" title="Save & Share Image"><i class="fa fa-share-alt"></i></a>
+    </div>
+    <div class="ayat-tools ayat-tools-right">
+      <a (click)="previousAyah()" title="Previous Ayat" aria-hidden="true"><i class="fa fa-long-arrow-left"></i></a>
+      <a (click)="loadAyah()" title="Random Ayat" aria-hidden="true"><i class="fa fa-refresh"></i></a>
+      <a (click)="nextAyah()" title="Next Ayat" aria-hidden="true"><i class="fa fa-long-arrow-right"></i></a>
     </div>
   </ng-container>
 </div>

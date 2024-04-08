@@ -22,7 +22,7 @@ export class QuranComponent implements OnInit, OnDestroy {
     private quran: QuranService,
     private settings: NgxChromeStorageService,
     private zone: NgZone,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnDestroy() {
@@ -36,13 +36,15 @@ export class QuranComponent implements OnInit, OnDestroy {
       if (data) {
         this.prefetchAyah = data;
       }
-      this.loadAyah();
+      const ayahNumQuery = this.route.snapshot.queryParams.ayahNum;
+      this.loadAyah(Number(ayahNumQuery) || null);
     });
   }
 
-  loadAyah() {
+  loadAyah(sequenceNum: number) {
     this.pauseAyah();
     this.ayah = {
+      sequenceNum: 0,
       text: '',
       number: 0,
       surah: '',
@@ -50,49 +52,22 @@ export class QuranComponent implements OnInit, OnDestroy {
       secondTranslationText: '',
     };
 
-    const ayahNumQuery = this.route.snapshot.queryParams.ayahNum;
-    let ayahNum = ayahNumQuery
-      ? Number(ayahNumQuery)
-      : this.quran.randomAyahNum();
-    if (this.prefetchAyah && !ayahNumQuery) {
+    if (this.prefetchAyah && !sequenceNum) {
       this.ayah = this.prefetchAyah.ayah;
-      ayahNum = this.prefetchAyah.ayahNum;
-      this.getWordByWordTranslations(ayahNum, this.ayah.text);
+      sequenceNum = this.prefetchAyah.sequenceNum;
+      this.translationsHash = this.ayah.wordByWord;
       this.prefetchAyah = null;
       this.settings.setAll(null, 'prefetchAyah');
-      this.settings.getChrome('ayatHistory', []).then((data) => {
-        const historyObj = {
-          text: this.ayah.text,
-          number: this.ayah.number,
-          surah: this.ayah.surah,
-          ayahNum,
-        };
-        if (data.length > 9) {
-          data.pop();
-        }
-        this.settings.setAll([historyObj, ...data], 'ayatHistory');
-      });
+      this.setHistory(sequenceNum, this.ayah);
     } else {
+      if (!sequenceNum) sequenceNum = this.quran.randomAyahNum();
       this.quran
-        .getAyah(ayahNum, this.showEnglishTranslation, this.translation)
+        .getAyah(sequenceNum, this.showEnglishTranslation, this.translation)
         .subscribe(
           (ayah) => {
             this.ayah = ayah;
-            this.getWordByWordTranslations(ayahNum, this.ayah.text);
-            this.settings.getChrome('ayatHistory', []).then((data) => {
-              if (!ayahNumQuery) {
-                const historyObj = {
-                  text: ayah.text,
-                  number: ayah.number,
-                  surah: ayah.surah,
-                  ayahNum,
-                };
-                if (data.length > 9) {
-                  data.pop();
-                }
-                this.settings.setAll([historyObj, ...data], 'ayatHistory');
-              }
-            });
+            this.translationsHash = this.ayah.wordByWord;
+            this.setHistory(sequenceNum, ayah);
           },
           (err) => {
             console.log(err);
@@ -100,7 +75,7 @@ export class QuranComponent implements OnInit, OnDestroy {
         );
     }
 
-    this.audio = this.quran.getAudio(ayahNum);
+    this.audio = this.quran.getAudio(sequenceNum);
     // Gets audio file duration
     this.audio.addEventListener(
       'canplaythrough',
@@ -121,26 +96,41 @@ export class QuranComponent implements OnInit, OnDestroy {
       true
     );
 
-    // prefetching ayah
-    const ayahNumber = this.quran.randomAyahNum();
+    // prefetching random ayah
+    this.prefetchNextAyah();
+  }
+
+  private prefetchNextAyah() {
+    const sequenceNum = this.quran.randomAyahNum();
     this.quran
-      .getAyah(ayahNumber, this.showEnglishTranslation, this.translation)
+      .getAyah(sequenceNum, this.showEnglishTranslation, this.translation)
       .subscribe(
         (ayah) => {
-          this.prefetchAyah = { ayahNum: ayahNumber, ayah };
+          this.prefetchAyah = { sequenceNum, ayah };
           this.settings.setAll(this.prefetchAyah, 'prefetchAyah');
         },
         (err) => {
           console.log(err);
         }
       );
+    return sequenceNum;
   }
 
-  getWordByWordTranslations(ayahNumber, ayahTextAr) {
-    this.quran.getAyahTranslations(ayahNumber, ayahTextAr, this.showEnglishTranslation, this.translation)
-      .subscribe(tHash => {
-        this.translationsHash = tHash;
-      })
+  private setHistory(sequenceNum: number, ayah: any) {
+    this.settings.getChrome('ayatHistory', []).then((data: any[]) => {
+      if (!data.some(histAyah => histAyah.sequenceNum === sequenceNum)) {
+        const historyObj = {
+          text: ayah.text,
+          number: ayah.number,
+          surah: ayah.surah,
+          sequenceNum,
+        };
+        if (data.length > 9) {
+          data.pop();
+        }
+        this.settings.setAll([historyObj, ...data], 'ayatHistory');
+      }
+    });
   }
 
   capture() {
@@ -173,6 +163,14 @@ export class QuranComponent implements OnInit, OnDestroy {
         link.click();
         srcEl.parentNode.removeChild(srcEl);
       });
+  }
+
+  previousAyah() {
+    this.loadAyah( this.ayah.sequenceNum-1 );
+  }
+
+  nextAyah() {
+    this.loadAyah( this.ayah.sequenceNum+1 );
   }
 
   playAyah() {

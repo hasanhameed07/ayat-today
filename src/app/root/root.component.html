@@ -6,31 +6,35 @@
           <app-gsearch></app-gsearch>
         </div>
         <nav class="nav nav-masthead">
-          <a [routerLink]="['/app/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Ayat</a>
+          <a [routerLink]="['/app/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Home</a>
           <a [routerLink]="['/app/timings']" routerLinkActive="active" class="nav-link">Prayer Timings</a>
-          <a [routerLink]="['/app/qazaPrayers']" routerLinkActive="active" class="nav-link">Qaza Prayers</a>
-          <a [routerLink]="['/app/ayatHistory']" routerLinkActive="active" class="nav-link">Ayah History</a>
+          <a [routerLink]="['/app/qazaPrayers']" routerLinkActive="active" class="nav-link">Qaza Prayer Diary</a>
+          <a [routerLink]="['/app/ayatHistory']" routerLinkActive="active" class="nav-link">Ayat History</a>
         </nav>
         <div class="vertical-nav">
           <div class="vertical-nav__icon fa fa-bars">
           </div>
           <div class="vertical-nav__links">
             <nav class="nav nav-masthead flex-column">
-              <a [routerLink]="['/app/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Ayat</a>
+              <a [routerLink]="['/app/']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Home</a>
               <a [routerLink]="['/app/timings']" routerLinkActive="active" class="nav-link">Prayer Timings</a>
-              <a [routerLink]="['/app/qazaPrayers']" routerLinkActive="active" class="nav-link">Qaza Prayers</a>
-              <a [routerLink]="['/app/ayatHistory']" routerLinkActive="active" class="nav-link">Ayah History</a>
+              <a [routerLink]="['/app/qazaPrayers']" routerLinkActive="active" class="nav-link">Qaza Prayer Diary</a>
+              <a [routerLink]="['/app/ayatHistory']" routerLinkActive="active" class="nav-link">Ayat History</a>
             </nav>
           </div>
         </div>
       </div>
     </div>
     <div class="whats-new dark-bg" *ngIf="appEvent==='updated'">
-      <h6 class="pull-left">Updated to {{appVersion}}: What's New:</h6>
+      <h6 class="pull-left">Updated to {{appVersion}}:</h6>
       <a class="close" aria-hidden="true" (click)='whatsNewRead()'><i class="fa fa-times"></i></a>
       <ul>
-        <li>Performance improvements.</li>
-        <li>New background images added</li>
+        <li>Word by word translation</li>
+        <li>Ayat History</li>
+        <li>Navigate to Previous & Next Ayat</li>
+        <li>UI Improvements</li>
+        <li>New Safe Web Search using StartPage</li>
+        <li>Additional Prayer Timings</li>
       </ul>
     </div>
     <div class="site-wrapper-inner">

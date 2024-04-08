@@ -22,7 +22,7 @@ export class RootComponent implements OnInit {
 
   ngOnInit() {
     const version = localStorage.getItem('app_version');
-    this.appVersion = (chrome.runtime.getManifest) ? chrome.runtime.getManifest().version : null;
+    this.appVersion =   chrome.runtime?.getManifest()?.version || null;
     if (version === null) {
       this.appEvent = 'install';
       localStorage.setItem('app_version', this.appVersion);
@@ -35,12 +35,6 @@ export class RootComponent implements OnInit {
 
     this.routerUrl = this.router.url;
     this.router.events.subscribe((url: any) => this.routerUrl = url.url);
-    this.router.events.subscribe(
-          (event: Event) => {
-              if (event instanceof NavigationEnd) {
-                // ga('send', 'pageview', event.urlAfterRedirects);
-              }
-          });
 
     this.backgroundImage = this.settings.config?.backgroundImage;
     this.setBackground();

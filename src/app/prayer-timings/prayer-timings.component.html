@@ -3,11 +3,10 @@
         <small class="w-100">Prayer Timings</small>
       </div>
       <i *ngIf="prayers?.length===0" class="fa fa-circle-o-notch fa-spin fa-2x fa-fw" ></i>
-      <div class="row  text-left" *ngFor="let timing of prayers">
-        <label for="number-input" class="col-8 text-left col-form-label">{{timing.key}}</label>
-        <div class="col-4 text-right">
+      <div class="row  text-left custom-row" *ngFor="let timing of prayers">
+        <label for="number-input" class="col-8 font-weight-bold">{{timing.key}}</label>
+        <div class="col-4 text-right  font-weight-bold">
            {{timing.val}}
         </div>
-        <hr />
       </div>
 </div>

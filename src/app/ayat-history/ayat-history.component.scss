@@ -1,20 +1,29 @@
 .text-container {
   .custom-row {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
+    padding: 14px 0;
+    border-top: 1px solid #202020;
   }
+
   .custom-row:hover {
-    background-color: #ffffff0f;
-    color: #fff;
+    background-color: #202020;
+    cursor: pointer;
   }
+}
+.ayat-number {
+  font-size: 0.9rem;
+  color: #43aac4;
 }
 .text-center {
   justify-content: center;
 }
+
 .arabic-text {
   font-family: 'Mirza';
+  font-size: 1.3rem;
 }
+
 .number {
-  font-size: 0.8rem;
-}
+  font-size: 0.9rem;
+  display: inline-block;
+  width: 40px;
+  }

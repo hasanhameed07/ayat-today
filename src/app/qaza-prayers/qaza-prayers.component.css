@@ -4,3 +4,7 @@
 .text-center {
   justify-content: center;
 }
+
+.custom-row {
+  margin: 20px 22%;
+}
