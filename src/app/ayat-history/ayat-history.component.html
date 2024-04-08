@@ -1,16 +1,16 @@
 <div class="text-container">
   <div class="row text-center form-group">
-    <small>Ayah History</small>
+    <small>Ayat History</small>
   </div>
 
   <div *ngFor="let ayah of history; let i=index">
-    <div class="row custom-row" (click)="getAyah(ayah.ayahNum)">
-      <label class="col-1 text-left col-form-label number">{{i+1}}</label>
-      <div class="col-9 text-right arabic-text">
-        <span>{{ayah.text}}</span>
+    <div class="row custom-row border-bottom-dim" (click)="getAyah(ayah.sequenceNum)" title="Go to Ayat">
+      <div class="col-lg-3 col-md-12 text-left">
+        <span class="text-left col-form-label number">{{i+1}}</span>
+        <span class="ayat-number font-weight-bold">{{ayah.surah + " : " + ayah.number }}</span>
       </div>
-      <div class="col-2 text-left ayat-number">
-        <span>{{ayah.surah + " : " + ayah.number }}</span>
+      <div class="col-lg-9 col-md-12 text-right arabic-text">
+        <span>{{ayah.text}}</span>
       </div>
     </div>
   </div>

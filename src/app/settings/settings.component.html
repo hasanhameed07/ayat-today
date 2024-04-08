@@ -1,5 +1,5 @@
 <div class="text-container settings-container">
-    <form [formGroup]="form" class="form-horizontal">
+    <form [formGroup]="form" class="form-horizontal p-4">
       <div class="form-group row justify-content-between">
         <small>Settings</small>
         <a [routerLink]="['/app']" class="close" aria-hidden="true"><i class="fa fa-times"></i></a>
@@ -7,16 +7,16 @@
       <div class="form-group row">
         <label class="col-4 text-left col-form-label">Background Image</label>
         <div class="col-sm-8">
-            <input type="checkbox"  formControlName="backgroundImage">
+            <input type="checkbox"  formControlName="backgroundImage"> &nbsp;Random
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row text-center">
         <small>Quran Settings</small>
       </div>
       <div class="form-group row">
         <label class="col-4 text-left col-form-label">English Translation</label>
         <div class="col-sm-8">
-            <input type="checkbox"  formControlName="showEnglish">
+            <input type="checkbox"  formControlName="showEnglish"> &nbsp;Saheeh International
         </div>
       </div>
       <div class="form-group row">
@@ -42,7 +42,7 @@
       <div class="form-group row">
         <label class="col-4 text-left col-form-label">Address</label>
         <div class="col-8">
-              <input type="text" class="form-control" formControlName="userLocation">
+              <input type="text" class="form-control" placeholder="Karachi, Pakistan" formControlName="userLocation">
         </div>
       </div>
       <div class="form-group row">
@@ -54,8 +54,9 @@
         </div>
       </div>
       <footer>
-        <a title="Rate this extension" href="https://chrome.google.com/webstore/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/reviews">Rate</a>
-        &nbsp;|&nbsp; <a title="Report an Issue" href="https://chrome.google.com/webstore/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/support">Support</a>
+        <a title="AyatToday" href="https://chromewebstore.google.com/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/">AyatToday</a>
+        &nbsp;|&nbsp; <a title="Rate this extension" href="https://chromewebstore.google.com/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/reviews">Give Review</a>
+        &nbsp;|&nbsp; <a title="Report an Issue" href="https://chromewebstore.google.com/detail/ayattoday/nmebafllopknoonpbddekobjcmhpnejf/support">Support</a>
       </footer>
     </form>
 </div>

@@ -1,23 +1,22 @@
 .container-2 {
-  width: 300px;
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
 }
 
 .container-2 input#search {
-  width: 16rem;
+  width: 218px;
   height: 34px;
   background: transparent;
-  font-size: 10pt;
+  font-size: 1rem;
   float: left;
   color: #262626;
   padding-left: 35px;
-  color: #fff;
+  color: #F5F2F0;
   border: none;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-color: rgba(255, 255, 255, 0);
+  border-color: rgba(245, 242, 240, 0);
   -webkit-transition: border-color .35s ease;
   -moz-transition: border-color .35s ease;
   -ms-transition: border-color .35s ease;
@@ -29,26 +28,27 @@
 .container-2 input#search:-moz-placeholder,
 .container-2 input#search::-moz-placeholder,
 .container-2 input#search:-ms-input-placeholder {
-  color: rgba(255, 255, 255, .8);
+  color: rgba(245, 242, 240, .8);
 }
 
 .container-2 .icon {
   position: absolute;
   top: 50%;
+  font-size: 1.2rem;
   margin-left: 4px;
   margin-top: 4px;
   z-index: 1;
   left: 0;
-  color: rgba(255, 255, 255, .7);
+  color: rgba(245, 242, 240, .7);
   text-shadow: 0.05rem 0.1rem 0rem rgba(0, 0, 0, .4);
 }
 
 .container-2 input#search:focus,
 .container-2 input#search:active {
   outline: none;
-  border-color: rgba(255, 255, 255, 1);
+  border-color: rgba(245, 242, 240, 1);
 }
 
 .container-2:hover .icon {
-  color: #fff;
+  color: #F5F2F0;
 }

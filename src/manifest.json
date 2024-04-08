@@ -4,8 +4,8 @@
   "author": "Hasan Hameed <hasanhameed89@gmail.com",
   "homepage_url": "https://github.com/hasanhameed07",
   "description": "Beautify your new tab screen with Quranic Ayat with the translation, Audio, Prayer timings, Islamic Date and Qaza Prayers manager.",
-  "version": "0.2.0",
-  "permissions": ["storage","http://*.alquran.cloud/"],
+  "version": "1.0.1",
+  "permissions": ["storage","https://*.alquran.cloud/", "http://*.alquran.cloud/"],
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com 'unsafe-eval'; object-src 'self';",
   "chrome_url_overrides" : {
     "newtab": "index.html"

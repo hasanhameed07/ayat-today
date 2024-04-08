@@ -1,0 +1,8 @@
+{
+  "/ayah": {
+    "target": "http://api.alquran.cloud",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

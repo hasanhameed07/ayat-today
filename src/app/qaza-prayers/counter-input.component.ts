@@ -15,7 +15,7 @@ export function createCounterRangeValidator(maxValue, minValue) {
       }
     };
 
-  return (c.value > +maxValue || c.value < +minValue) ? err: null;
+    return (c.value > +maxValue || c.value < +minValue) ? err : null;
   }
 }
 
@@ -24,14 +24,15 @@ export function createCounterRangeValidator(maxValue, minValue) {
   template: `
   <div class="input-group">
       <span class="input-group-btn">
-          <button type="button" class="btn btn-primary btn-number btn-sm"  (click)="increase()">
-              <span class="fa fa-plus"></span>
-          </button>
+        <button type="button" class="btn btn-primary btn-number btn-sm"  (click)="decrease()">
+            <span class="fa fa-minus"></span>
+        </button>
       </span>
       <input type="tel" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control input-number form-control-sm" min="{{counterRangeMin}}" max="{{counterRangeMax}}" [(ngModel)]="counterValue">
+
       <span class="input-group-btn">
-          <button type="button" class="btn btn-primary btn-number btn-sm"  (click)="decrease()">
-              <span class="fa fa-minus"></span>
+          <button type="button" class="btn btn-primary btn-number btn-sm"  (click)="increase()">
+              <span class="fa fa-plus"></span>
           </button>
       </span>
     </div>
@@ -39,17 +40,21 @@ export function createCounterRangeValidator(maxValue, minValue) {
   styles: [`
   .input-number {
       background-color: rgba(0, 0, 0, 0);
-      color: #EEE;
+      color: #F5F2F0;
       text-align: center;
-      width:57px;
+      font-weight:bold;
+
   }
   .btn-primary {
     color: #000;
     background-color: #5f5f5f;
     border-color: #4a4a4a;
   }
-  .btn-primary:active:focus {
-    color: #91cedb;
+  .btn-primary:hover {
+    background-color: #43aac4;
+  }
+  .btn-primary:active:focus:down {
+    color: #F5F2F0;
     background-color: #5f5f5f;
     border-color: #4a4a4a;
   }
@@ -61,8 +66,8 @@ export function createCounterRangeValidator(maxValue, minValue) {
 })
 export class CounterInputComponent implements ControlValueAccessor, OnChanges {
 
-  propagateChange:any = () => {};
-  validateFn:any = () => {};
+  propagateChange: any = () => { };
+  validateFn: any = () => { };
 
   @Input('counterValue') _counterValue = 0;
   @Input() counterRangeMax;
@@ -95,12 +100,12 @@ export class CounterInputComponent implements ControlValueAccessor, OnChanges {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched() { }
 
   increase() {
     if (this.counterValue < this.counterRangeMax) {
       this.counterValue++;
-      this.notify.emit({name: this.counterName, value:this.counterValue});
+      this.notify.emit({ name: this.counterName, value: this.counterValue });
     }
 
   }
@@ -108,7 +113,7 @@ export class CounterInputComponent implements ControlValueAccessor, OnChanges {
   decrease() {
     if (this.counterValue > this.counterRangeMin) {
       this.counterValue--;
-      this.notify.emit({name: this.counterName, value:this.counterValue});
+      this.notify.emit({ name: this.counterName, value: this.counterValue });
     }
   }
 

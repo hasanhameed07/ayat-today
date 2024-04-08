@@ -1,12 +1,9 @@
-
 .col-form-label {
   text-align: left;
 }
-hr {
-    height: 1px;
-    background-color: #000;
-    margin-top: 0;
-    margin-bottom: 10px;
-    width: 94%;
-}
 
+.custom-row {
+  border-top: 1px solid #202020;
+  padding: 12px 0 6px;
+  margin: 0 22%;
+}

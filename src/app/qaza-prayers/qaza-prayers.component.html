@@ -1,11 +1,11 @@
 <div class="text-container">
     <div class="form-group row text-center">
-      <small>Qaza Prayers</small>
+      <small>Qaza Prayers Diary</small>
     </div>
     <form [formGroup]="form">
-      <div class="form-group row" *ngFor="let prayer of prayers">
-        <label for="number-input" class="col-8 text-left col-form-label">{{prayer.name}}</label>
-        <div class="col-4">
+      <div class="form-group row custom-row " *ngFor="let prayer of prayers">
+        <label for="number-input" class="col-xl-8 col-sm-8 text-left col-form-label font-weight-bold">{{prayer.name}}</label>
+        <div class="col-xl-4 col-sm-4">
            <counter-input
             formControlName="counter"
             [counterRangeMax]="maxValue"
